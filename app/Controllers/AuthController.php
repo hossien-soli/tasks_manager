@@ -13,6 +13,7 @@ class AuthController extends Controller
 
     public function registerPOST ($request,$response)
     {
+        $form_data = $request->getParsedBody();
         
     }
 }

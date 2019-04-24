@@ -6,6 +6,8 @@ use \Slim\App as SlimApp;
 use \Slim\Views\Twig;
 use \Slim\Views\TwigExtension;
 
+use \App\Util\Config;
+
 define('INC_ROOT',dirname(__DIR__));
 session_start();
 
@@ -28,6 +30,12 @@ $container['view'] = function ($container) {
     $view->addExtension(new TwigExtension ($router,$uri));
 
     return $view;
+};
+
+$container['config'] = function ($container) {
+    $app_mode = file_get_contents(INC_ROOT . '/mode');
+    $config_file = sprintf(INC_ROOT . '/config/%s.php',$app_mode);
+    return new Config ($config_file);
 };
 
 

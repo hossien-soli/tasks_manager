@@ -11,7 +11,8 @@
     "require": {
         "slim/slim": "^3.12",
         "slim/twig-view": "^2.5",
-        "slim/flash": "^0.4.0"
+        "slim/flash": "^0.4.0",
+        "hassankhan/config": "^2.0"
     },
     "autoload": {
         "psr-4": {
