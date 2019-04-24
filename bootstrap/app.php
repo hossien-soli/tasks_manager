@@ -47,9 +47,22 @@ $container['flash'] = function ($container) {
     return new FlashMessages;  
 };
 
+$users_directory = INC_ROOT . '/public/users';
+if (!file_exists($users_directory))
+    mkdir($users_directory);
+$users_profile_picture_directory = INC_ROOT . '/public/users/profile_pictures';
+if (!file_exists($users_profile_picture_directory))
+    mkdir($users_profile_picture_directory);
+$container['users_profile_picture_directory'] = [
+    'local' => $users_profile_picture_directory,
+    'public' => '/users/profile_pictures',
+];
+
 // add global middleware
 $app->add(new ValidationErrorsMiddleware ($app->getContainer()));
 $app->add(new OldInputMiddleware ($app->getContainer()));
 
+
+require INC_ROOT . '/app/database.php';
 require INC_ROOT . '/app/controllers.php';
 require INC_ROOT . '/app/routes.php';

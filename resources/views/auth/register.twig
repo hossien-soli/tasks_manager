@@ -11,13 +11,16 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input autofocus type="text" id="name" class="form-control" name="name" >
+                        <input value="{{ old.name }}" autofocus type="text" id="name" class="form-control" name="name" >
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-grou">
                         <label for="email">Email</label>
-                        <input type="text" id="email" class="form-control" name="email" >
+                        <input value="{{ old.email }}" type="text" id="email" class="form-control" name="email" >
+                        {% if errors.has('email') %}
+                        <small class="text-danger" >{{ errors.first('email') }}</small>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -25,13 +28,19 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" id="username" class="form-control" name="username" >
+                        <input value="{{ old.username }}" type="text" id="username" class="form-control" name="username" >
+                        {% if errors.has('username') %}
+                        <small class="text-danger" >{{ errors.first('username') }}</small>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" id="password" class="form-control" name="password" >
+                        {% if errors.has('password') %}
+                        <small class="text-danger" >{{ errors.first('password') }}</small>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -40,6 +49,9 @@
                     <div class="form-group">
                         <label for="password_confirm">Password Confirm</label>
                         <input type="password" id="password_confirm" class="form-control" name="password_confirm" >
+                        {% if errors.has('password_confirm') %}
+                        <small class="text-danger" >{{ errors.first('password_confirm') }}</small>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-6">
