@@ -1,7 +1,4 @@
 <?php
 
-$app->get('/',function ($request,$response) {
-    return $this->view->render($response,'main/home.twig',[
-        'title' => 'Tasks Manager | Home',
-    ]);
-});
+$app->get('/','MainController:homeGET')->setName('main.home');
+$app->get('/about','MainController:aboutGET')->setName('main.about');

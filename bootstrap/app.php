@@ -31,4 +31,5 @@ $container['view'] = function ($container) {
 };
 
 
+require INC_ROOT . '/app/controllers.php';
 require INC_ROOT . '/app/routes.php';

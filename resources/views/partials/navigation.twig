@@ -1,9 +1,12 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" >
-    <a href="#" class="navbar-brand" >Tasks Manager</a>
+    <a href="{{ path_for('main.home') }}" class="navbar-brand" >Tasks Manager</a>
     <ul class="navbar-nav mr-auto" >
         <li class="nav-item">
-            <a href="#" class="nav-link" >Home</a>
+            <a href="{{ path_for('main.home') }}" class="nav-link" >Home</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path_for('main.about') }}" class="nav-link" >About</a>
         </li>
     </ul>
     <ul class="navbar-nav ml-auto">
