@@ -4,7 +4,12 @@ return [
     'app' => [
         'name' => 'tasks_manager',
         'title' => 'Tasks Manager',
-        'url' => 'http://localhost/Projects/tasks_manager/public'
+        'url' => 'http://localhost/Projects/tasks_manager/public',
+
+        'hash' => [
+            'algo' => PASSWORD_BCRYPT,
+            'cost' => 10,
+        ],
     ],
 
     'db' => [
