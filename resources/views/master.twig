@@ -5,8 +5,13 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" type="text/css" href="{{ base_url() }}/lib/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/all.css" />
+    <script>
+        function scripts () {
+            $('#flash').delay(4000).slideUp('slow');
+        }
+    </script>
 </head>
-<body>
+<body onload="scripts()" >
     {% include 'partials/navigation.twig' %}
     <div class="container" >
         <br>
