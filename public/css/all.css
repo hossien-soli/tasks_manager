@@ -2,3 +2,7 @@
 .navbar ul:last-child {
     margin-right: 35px;
 }
+
+.register-form button[type=submit] {
+    width: 200px;
+}

@@ -1,0 +1,61 @@
+{% extends 'master.twig' %}
+
+{% block content %}
+<div class="card register-form">
+    <div class="card-header">
+        <h2>Create new Account</h2>
+    </div>
+    <div class="card-body">
+        <form method="post" action="{{ path_for('auth.register') }}" enctype="multipart/form-data" >
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input autofocus type="text" id="name" class="form-control" name="name" >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-grou">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" class="form-control" name="email" >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" name="username" >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" name="password" >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="password_confirm">Password Confirm</label>
+                        <input type="password" id="password_confirm" class="form-control" name="password_confirm" >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="profile_picture">Profile Picture</label>
+                        <div class="custom-file">
+                            <input type="file" id="profile_picture" class="custom-file-input" name="profile_picture" >
+                            <label for="profile_picture" class="custom-file-label" >Browse a picture ...</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit" >Register</button>
+            <button class="btn btn-danger" type="reset" >Reset Form</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
