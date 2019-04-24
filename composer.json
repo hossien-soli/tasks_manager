@@ -1,0 +1,16 @@
+{
+    "name": "hossien/tasks_manager",
+    "description": "tasks manager system with slim3",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Hossien Soli",
+            "email": "h.s.asol.msol@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.12",
+        "slim/twig-view": "^2.5",
+        "slim/flash": "^0.4.0"
+    }
+}
