@@ -10,7 +10,7 @@ use \Slim\Flash\Messages as FlashMessages;
 use \App\Util\Config;
 use \App\Middleware\ValidationErrorsMiddleware;
 use \App\Middleware\OldInputMiddleware;
-use \App\Util\Auth;
+use \App\Auth\Auth;
 
 define('INC_ROOT',dirname(__DIR__));
 session_start();
