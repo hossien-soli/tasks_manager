@@ -40,7 +40,22 @@ class TasksController extends Controller
         }
         else
             $this->flash->addMessage('error','This task doesn\'t belongs to you !');
-            
+
+        return $response->withRedirect($this->router->pathFor('auth.dashboard'));
+    }
+
+    public function complateTask ($request,$response)
+    {
+        $taskId = $request->getAttribute('taskId');
+        if ($this->gate->canModifyTask($taskId)) {
+            $task = Task::find($taskId);
+            $task->complated = true;
+            $task->save();
+            $this->flash->addMessage('info','Process successful !');
+        }
+        else
+            $this->flash->addMessage('error','This task doesn\'t belongs to you !');
+
         return $response->withRedirect($this->router->pathFor('auth.dashboard'));
     }
 }

@@ -14,6 +14,9 @@
                 <input type="hidden" name="taskId" value="{{ task.id }}" />
                 <button class="btn btn-danger btn-sm" type="submit" >Delete</button>
             </form>
+            <form class="d-inline" method="post" action="{{ path_for('tasks.edit.complate',{'taskId':task.id}) }}" >
+                <button class="btn btn-primary btn-sm" >Mark as Complated</button>
+            </form>
         </div>
     </li>
     {% endfor %}
