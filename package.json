@@ -1,0 +1,24 @@
+{
+  "name": "tasks_manager",
+  "version": "1.0.0",
+  "description": "gulpfile support for tasks manager project",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hossien-soli/tasks_manager.git"
+  },
+  "author": "hossien_soli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hossien-soli/tasks_manager/issues"
+  },
+  "homepage": "https://github.com/hossien-soli/tasks_manager#readme",
+  "devDependencies": {
+    "bootstrap": "^4.3.1",
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.2"
+  }
+}

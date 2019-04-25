@@ -1,27 +1,18 @@
-
 .navbar ul:last-child {
-    margin-right: 45px;
-}
+  margin-right: 45px; }
 
 .register-form button[type=submit] {
-    width: 200px;
-}
+  width: 200px; }
 
 .login-form {
-    width: 450px;
-}
-.login-form button[type=submit] {
-    width: 160px;
-}
+  width: 450px; }
+  .login-form button[type=submit] {
+    width: 160px; }
 
 .fixed-buttons {
-    position: fixed;
-    right: 10px;
-    bottom: 10px;
-}
-.fixed-buttons * {
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.6);
-}
-.fixed-buttons button {
-    width: 200px;
-}
+  position: fixed;
+  right: 10px;
+  bottom: 10px; }
+  .fixed-buttons button {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+    width: 200px; }

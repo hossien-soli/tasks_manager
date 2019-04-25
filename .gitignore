@@ -1,3 +1,5 @@
 vendor/
 composer.lock
 public/users/
+package-lock.json
+node_modules/
