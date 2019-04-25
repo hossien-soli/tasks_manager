@@ -105,7 +105,7 @@ class AuthController extends Controller
         }
     }
 
-    public function logoutGET ($request,$response)
+    public function logoutPOST ($request,$response)
     {
         $this->auth->logout();
         $this->flash->addMessage('info','Successfully logged out!');

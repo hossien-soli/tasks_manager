@@ -11,7 +11,7 @@ $app->group('/account',function ($app) {
     $app->post('/login','AuthController:loginPOST');
 
     $app->get('/dashboard','AuthController:dashboardGET')->setName('auth.dashboard');
-    $app->get('/logout','AuthController:logoutGET')->setName('auth.logout');
+    $app->post('/logout','AuthController:logoutPOST')->setName('auth.logout');
 });
 
 $app->get('/test',function () {

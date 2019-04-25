@@ -12,10 +12,14 @@
     <ul class="navbar-nav ml-auto">
         {% if auth.check() %}
         <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" >{{ auth.user().name }}</a>
+            <a href="#" class="nav-link dropdown-toggle d-inline" data-toggle="dropdown" >{{ auth.user().name }}</a>
+            {% if auth.user().imagepath %}
+            <img src="{{ base_url() }}{{ auth.user().imagepath }}" class="d-inline rounded" width="20">
+            {% endif %}
             <div class="dropdown-menu">
                 <a href="{{ path_for('auth.dashboard') }}" class="dropdown-item" >Dashboard</a>
-                <a href="{{ path_for('auth.logout') }}" class="dropdown-item" >Logout</a>
+                <a href='#' onclick="document.getElementById('logoutForm').submit();" class="dropdown-item" >Logout</a>
+                <form style="display:none;" id="logoutForm" method="post" action="{{ path_for('auth.logout') }}" ></form>
             </div>
         </li>
         {% else %}

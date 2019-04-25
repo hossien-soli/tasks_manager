@@ -1,5 +1,6 @@
 {% extends 'master.twig' %}
 
 {% block content %}
+<img src="{{ base_url() }}{{ auth.user().imagepath }}" alt="">
 <h2>Hello : {{ auth.user().name }}</h2>
 {% endblock %}
