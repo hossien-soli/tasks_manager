@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Util\Validator;
+use App\Models\Task;
+use App\Auth\Gate;
 
 class TasksController extends Controller
 {
@@ -27,5 +29,18 @@ class TasksController extends Controller
             $this->flash->addMessage('info','New task successfully added !');
             return $response->withRedirect($this->router->pathFor('auth.dashboard'));
         }
+    }
+
+    public function destroy ($request,$response)
+    {
+        $taskId = $request->getParsedBodyParam('taskId');
+        if ($this->gate->canModifyTask($taskId)) {
+            Task::destroy($taskId);
+            $this->flash->addMessage('info','The task successfully removed !');
+        }
+        else
+            $this->flash->addMessage('error','This task doesn\'t belongs to you !');
+            
+        return $response->withRedirect($this->router->pathFor('auth.dashboard'));
     }
 }

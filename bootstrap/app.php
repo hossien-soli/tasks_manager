@@ -11,6 +11,7 @@ use \App\Util\Config;
 use \App\Middleware\ValidationErrorsMiddleware;
 use \App\Middleware\OldInputMiddleware;
 use \App\Auth\Auth;
+use \App\Auth\Gate;
 
 define('INC_ROOT',dirname(__DIR__));
 session_start();
@@ -52,6 +53,11 @@ $container['flash'] = function ($container) {
 $container['auth'] = function ($container) {
     return new Auth ($container);
 };
+
+$container['gate'] = function ($container) {
+    return new Gate ($container);
+};
+
 
 $users_directory = INC_ROOT . '/public/users';
 if (!file_exists($users_directory))

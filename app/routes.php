@@ -25,6 +25,7 @@ $app->group('/account',function ($app) {
 
 $app->group('/tasks',function ($app) {
     $app->post('/','TasksController:store')->setName('tasks.store');
+    $app->post('/delete','TasksController:destroy')->setName('tasks.destroy');
 })->add(new AuthMiddleware ($app->getContainer()));
 
 $app->get('/test',function () {

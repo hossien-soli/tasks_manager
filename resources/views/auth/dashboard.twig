@@ -7,7 +7,15 @@
 {% else %}
 <ul class="list-group" >
     {% for task in tasks %}
-    <li class="list-group-item" >{{ task.body }}</li>
+    <li class="list-group-item" >
+        <span class="{{ task.complated?'text-info':'text-danger' }} float-left" >{{ task.body }}</span>
+        <div class="float-right" >
+            <form method="post" class="d-inline" action="{{ path_for('tasks.destroy') }}" >
+                <input type="hidden" name="taskId" value="{{ task.id }}" />
+                <button class="btn btn-danger btn-sm" type="submit" >Delete</button>
+            </form>
+        </div>
+    </li>
     {% endfor %}
 </ul>
 {% endif %}
