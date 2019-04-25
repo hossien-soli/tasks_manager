@@ -3,6 +3,7 @@
 namespace App\Auth;
 
 use App\Models\User;
+use App\Util\Hash;
 
 class Auth
 {
