@@ -10,6 +10,7 @@ use \Slim\Flash\Messages as FlashMessages;
 use \App\Util\Config;
 use \App\Middleware\ValidationErrorsMiddleware;
 use \App\Middleware\OldInputMiddleware;
+use \App\Util\Auth;
 
 define('INC_ROOT',dirname(__DIR__));
 session_start();
@@ -45,6 +46,10 @@ $container['config'] = function ($container) {
 
 $container['flash'] = function ($container) {
     return new FlashMessages;  
+};
+
+$container['auth'] = function ($container) {
+    return new Auth ($container);
 };
 
 $users_directory = INC_ROOT . '/public/users';

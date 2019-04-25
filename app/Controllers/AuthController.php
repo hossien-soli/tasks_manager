@@ -65,4 +65,35 @@ class AuthController extends Controller
             'title' => 'Account | Login',
         ]);
     }
+
+    public function loginPOST ($request,$response)
+    {
+        $form_data = $request->getParsedBody();
+        $validator = new Validator;
+        $validation = $validator->make($form_data,[
+            'username' => 'required|min:4',
+            'password' => 'required|min:6',
+        ]);
+        $validation->validate();
+        if ($validation->fails()) {
+            $_SESSION['errors'] = $validation->errors();
+            return $response->withRedirect($this->router->pathFor('auth.login'));
+        }
+        else {
+            $res = $this->auth->attempt($form_data['username'],$form_data['password']);
+            if (!$res) {
+                $this->flash->addMessage('error','Incorrect username or password !');
+                return $response->withRedirect($this->router->pathFor('auth.login'));
+            }
+            else {
+                $this->flash->addMessage('info',"You're logged in !");
+                return $response->withRedirect($this->router->pathFor('auth.dashboard'));
+            }
+        }
+    }
+
+    public function dashboardGET ($request,$response)
+    {
+        return "you're on dashboard !";
+    }
 }
