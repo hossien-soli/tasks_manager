@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Task extends Eloquent
 {
     protected $table = 'tasks';
-    protected $fillable = ['title','slug','body'];
+    protected $fillable = ['body'];
 
     public function user ()
     {

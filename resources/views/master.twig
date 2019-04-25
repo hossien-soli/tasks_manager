@@ -5,6 +5,8 @@
     <title>{{ title }}</title>
     <link rel="stylesheet" type="text/css" href="{{ base_url() }}/lib/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/all.css" />
+    <script type="text/javascript" src="{{ base_url() }}/lib/jquery.js" ></script>
+    
     <script>
         function scripts () {
             $('#flash').delay(4000).slideUp('slow');
@@ -19,7 +21,6 @@
         {% block content %}{% endblock %}
     </div>
 
-    <script type="text/javascript" src="{{ base_url() }}/lib/jquery.js" ></script>
     <script type="text/javascript" src="{{ base_url() }}/lib/bootstrap.js" ></script>
 </body>
 </html>

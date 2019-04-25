@@ -23,6 +23,10 @@ $app->group('/account',function ($app) {
     })->add(new AuthMiddleware ($app->getContainer()));
 });
 
+$app->group('/tasks',function ($app) {
+    $app->post('/','TasksController:store')->setName('tasks.store');
+})->add(new AuthMiddleware ($app->getContainer()));
+
 $app->get('/test',function () {
     echo '<pre>';
     print_r($_SESSION);
