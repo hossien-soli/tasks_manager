@@ -1,6 +1,14 @@
 {% extends 'master.twig' %}
 
 {% block content %}
-<img src="{{ base_url() }}{{ auth.user().imagepath }}" alt="">
-<h2>Hello : {{ auth.user().name }}</h2>
+<h2 style="margin-bottom:20px;" >Your Tasks</h2>
+{% if tasks is empty %}
+<h2 class="text-danger" >Nothing to Show !</h2>
+{% else %}
+<ul class="list-group" >
+    {% for task in tasks %}
+    <li class="list-group-item" >{{ task.body }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endblock %}

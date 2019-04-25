@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Util\Validator;
 use App\Models\User;
 use App\Util\Hash;
+use App\Models\Task;
 
 class AuthController extends Controller
 {
@@ -94,8 +95,10 @@ class AuthController extends Controller
 
     public function dashboardGET ($request,$response)
     {
+        $tasks = $this->auth->user()->tasks;
         return $this->view->render($response,'auth/dashboard.twig',[
             'title' => 'Account | Dashboard',
+            'tasks' => $tasks,
         ]);
     }
 
