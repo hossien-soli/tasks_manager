@@ -34,7 +34,8 @@ $container['view'] = function ($container) {
     $view->addExtension(new TwigExtension ($router,$uri));
 
     $view->getEnvironment()->addGlobal('flash',$container->get('flash'));
-
+    $view->getEnvironment()->addGlobal('auth',$container->get('auth'));
+    
     return $view;
 };
 

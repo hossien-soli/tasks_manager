@@ -7,10 +7,12 @@ use App\Models\User;
 class Auth
 {
     protected $container;
+    protected $session_key;
 
     public function __construct ($container)
     {
         $this->container = $container;
+        $this->session_key = 'logged_in_id';
     }
 
     public function attempt ($username_or_email,$password)
@@ -28,8 +30,27 @@ class Auth
         $password_is_correct = $hash->check($password,$user_hashed_password);
 
         if ($password_is_correct)
-            $_SESSION['logged_in_id'] = $user->id;
+            $_SESSION[$this->session_key] = $user->id;
 
         return $password_is_correct;
+    }
+
+    public function check ()
+    {
+        return isset($_SESSION[$this->session_key]);
+    }
+
+    public function user ()
+    {
+        if ($this->check())
+            return User::find($_SESSION[$this->session_key]);
+        else
+            return null;
+    }
+
+    public function logout ()
+    {
+        if ($this->check())
+            unset($_SESSION[$this->session_key]);
     }
 }

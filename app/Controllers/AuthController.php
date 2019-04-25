@@ -94,6 +94,21 @@ class AuthController extends Controller
 
     public function dashboardGET ($request,$response)
     {
-        return "you're on dashboard !";
+        if ($this->auth->check()) {
+            return $this->view->render($response,'auth/dashboard.twig',[
+                'title' => 'Account | Dashboard',
+            ]);
+        }
+        else {
+            $this->flash->addMessage('error','Please login first !');
+            return $response->withRedirect($this->router->pathFor('auth.login'));
+        }
+    }
+
+    public function logoutGET ($request,$response)
+    {
+        $this->auth->logout();
+        $this->flash->addMessage('info','Successfully logged out!');
+        return $response->withRedirect($this->router->pathFor('main.home'));
     }
 }
