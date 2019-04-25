@@ -55,7 +55,14 @@ class AuthController extends Controller
             
             User::create($form_data);
             $this->flash->addMessage('info','You have been registered !');
-            return $response->withRedirect($this->router->pathFor('main.home'));
+            return $response->withRedirect($this->router->pathFor('auth.login'));
         }
+    }
+
+    public function loginGET ($request,$response)
+    {
+        return $this->view->render($response,'auth/login.twig',[
+            'title' => 'Account | Login',
+        ]);
     }
 }

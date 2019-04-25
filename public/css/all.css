@@ -6,3 +6,10 @@
 .register-form button[type=submit] {
     width: 200px;
 }
+
+.login-form {
+    width: 450px;
+}
+.login-form button[type=submit] {
+    width: 160px;
+}
