@@ -19,7 +19,7 @@ $app->group('/account',function ($app) {
 
     $app->group('',function ($app) {
         $app->get('/dashboard','AuthController:dashboardGET')->setName('auth.dashboard');
-        $app->post('/logout','AuthController:logoutPOST')->setName('auth.logout');
+        $app->post('/logout','AuthController:logout')->setName('auth.logout');
     })->add(new AuthMiddleware ($app->getContainer()));
 });
 
