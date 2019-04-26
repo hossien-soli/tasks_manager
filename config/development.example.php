@@ -4,7 +4,7 @@ return [
     'app' => [
         'name' => 'tasks_manager',
         'title' => 'Tasks Manager',
-        'url' => 'http://localhost/',
+        'url' => 'http://localhost',
 
         'hash' => [
             'algo' => PASSWORD_BCRYPT,
