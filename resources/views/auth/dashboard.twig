@@ -12,9 +12,11 @@
         <div class="float-right" >
             <form method="post" class="d-inline" action="{{ path_for('tasks.destroy') }}" >
                 <input type="hidden" name="taskId" value="{{ task.id }}" />
+                {{ csrf.field | raw }}
                 <button class="btn btn-danger btn-sm" type="submit" >Delete</button>
             </form>
             <form class="d-inline" method="post" action="{{ path_for('tasks.edit.complate',{'taskId':task.id}) }}" >
+                {{ csrf.field | raw }}
                 <button class="btn btn-primary btn-sm" >Mark as Complated</button>
             </form>
         </div>
@@ -42,6 +44,7 @@
                         <small class="text-danger" >{{ errors.first('body') }}</small>
                         {% endif %}
                     </div>
+                    {{ csrf.field | raw }}
                     <button class="btn btn-success" style="width:150px;" type="submit" >Add Task</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal" >Close</button>
                 </form>

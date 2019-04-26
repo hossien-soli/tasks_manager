@@ -5,11 +5,13 @@ require "../vendor/autoload.php";
 use \Slim\App as SlimApp;
 use \Slim\Views\Twig;
 use \Slim\Views\TwigExtension;
-use \Slim\Flash\Messages as FlashMessages;
+use \Slim\Flash\Messages as SlimFlash;
+use \Slim\Csrf\Guard as SlimCsrf;
 
 use \App\Util\Config;
 use \App\Middleware\ValidationErrorsMiddleware;
 use \App\Middleware\OldInputMiddleware;
+use \App\Middleware\CsrfViewMiddleware;
 use \App\Auth\Auth;
 use \App\Auth\Gate;
 
@@ -47,7 +49,7 @@ $container['config'] = function ($container) {
 };
 
 $container['flash'] = function ($container) {
-    return new FlashMessages;  
+    return new SlimFlash;  
 };
 
 $container['auth'] = function ($container) {
@@ -56,6 +58,10 @@ $container['auth'] = function ($container) {
 
 $container['gate'] = function ($container) {
     return new Gate ($container);
+};
+
+$container['csrf'] = function ($container) {
+    return new SlimCsrf;
 };
 
 
@@ -73,6 +79,8 @@ $container['users_profile_picture_directory'] = [
 // add global middleware
 $app->add(new ValidationErrorsMiddleware ($app->getContainer()));
 $app->add(new OldInputMiddleware ($app->getContainer()));
+$app->add(new CsrfViewMiddleware ($app->getContainer()));
+$app->add($container->get('csrf'));
 
 
 require INC_ROOT . '/app/database.php';

@@ -21,6 +21,7 @@
                 <small class="text-danger" >{{ errors.first('password') }}</small>
                 {% endif %}
             </div>
+            {{ csrf.field | raw }}
             <button class="btn btn-primary" type="submit" >Login</button>
         </form>
     </div>

@@ -19,7 +19,9 @@
             <div class="dropdown-menu">
                 <a href="{{ path_for('auth.dashboard') }}" class="dropdown-item" >Dashboard</a>
                 <a href='#' onclick="document.getElementById('logoutForm').submit();" class="dropdown-item" >Logout</a>
-                <form style="display:none;" id="logoutForm" method="post" action="{{ path_for('auth.logout') }}" ></form>
+                <form style="display:none;" id="logoutForm" method="post" action="{{ path_for('auth.logout') }}" >
+                    {{ csrf.field | raw }}
+                </form>
             </div>
         </li>
         {% else %}
