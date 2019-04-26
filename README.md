@@ -9,4 +9,4 @@ Tasks Manager System with a Secure Authentication System that Developed by Slim 
 + config/development.example.php -> config/development.php
 + config/production.example.php -> config/production.php
 
-### Open 'database.jpg' image for see database structure that project needs. and create a database like this for project and set database config options into 'config/development.php' file
+### Open 'database.jpg' image for see database structure that project needs. and create a database like this for project and set database connection options into 'config/development.php' file
