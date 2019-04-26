@@ -6,6 +6,7 @@ use App\Util\Validator;
 use App\Models\User;
 use App\Util\Hash;
 use App\Models\Task;
+use App\Util\Mailer;
 
 class AuthController extends Controller
 {
@@ -61,13 +62,48 @@ class AuthController extends Controller
                 }
                 $hash = new Hash ($this->container->get('config'));
                 $form_data['password'] = $hash->password($form_data['password']);
-                $active_hash = bin2hex(random_bytes(30));
+                $active_hash = bin2hex(random_bytes(25));
                 $form_data = array_merge($form_data,['activehash' => $active_hash]);
-                
+
                 User::create($form_data);
-                $this->flash->addMessage('info','You have been registered !');
+                // send activation mail
+                $mailer = new Mailer ($this->container->get('config'));
+                $activation_link = $this->config->get('app.url') . $this->router->pathFor('auth.activate_account');
+                $activation_link .= sprintf('?email=%s&activehash=%s',$form_data['email'],$form_data['activehash']);              
+                $mail_subject = "Tasks Manager | Thanks for registering";
+                $mail_body = sprintf('
+                    <h1>Tasks Manager</h1>
+                    <h2>Your account has been created !</h2>
+                    <h2>For activate your account please <a href="%s" >Click Here.</a></h2>
+                ',$activation_link);
+                $altbody = sprintf('Tasks Manager\nFor activate your account please open following link on your browser\n%s',$activation_link);
+                $mailer->readyForSend($form_data['email'],$mail_subject,$mail_body,$altbody);
+                $mailer->AttemptForSend();
+
+                $this->flash->addMessage('info','You account hsa been created !<br/>Please check your email for activate your account.');
                 return $response->withRedirect($this->router->pathFor('auth.login'));
             }
+        }
+    }
+
+    public function activateAccount ($request,$response)
+    {
+        $email = $request->getQueryParam('email');
+        $active_hash = $request->getQueryParam('activehash');
+        $user = User::where('email',$email)
+                    ->where('activehash',$active_hash)
+                    ->first();
+        if (is_null($user)) {
+            return $response->withStatus(404)
+                            ->withHeader('Content-Type','text/plain')
+                            ->write('404 | Page not Found !');
+        }
+        else {
+            $user->activehash = NULL;
+            $user->isactive = 1;
+            $user->save();
+            $this->flash->addMessage('info','Your account has been successfully activated !');
+            return $response->withRedirect($this->router->pathFor('auth.login'));
         }
     }
 
@@ -98,8 +134,14 @@ class AuthController extends Controller
                 return $response->withRedirect($this->router->pathFor('auth.login'));
             }
             else {
-                $this->flash->addMessage('info',"You're logged in !");
-                return $response->withRedirect($this->router->pathFor('auth.dashboard'));
+                if ($this->gate->accountIsActive($form_data['username'])) {
+                    $this->flash->addMessage('info',"You're logged in !");
+                    return $response->withRedirect($this->router->pathFor('auth.dashboard'));
+                }
+                else {
+                    $this->flash->addMessage('error','Your account has not been activated!<br/>Please check your email for activate your account.');
+                    return $response->withRedirect($this->router->pathFor('auth.login'));
+                }
             }
         }
     }

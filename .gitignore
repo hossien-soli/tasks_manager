@@ -3,3 +3,5 @@ composer.lock
 public/users/
 package-lock.json
 node_modules/
+config/development.php
+config/production.php

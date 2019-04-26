@@ -30,7 +30,7 @@ class Auth
         $hash = new Hash ($this->container->get('config'));
         $password_is_correct = $hash->check($password,$user_hashed_password);
 
-        if ($password_is_correct)
+        if ($password_is_correct && $this->container->gate->accountIsActive($username_or_email))
             $_SESSION[$this->session_key] = $user->id;
 
         return $password_is_correct;

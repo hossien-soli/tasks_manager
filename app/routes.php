@@ -21,6 +21,8 @@ $app->group('/account',function ($app) {
         $app->get('/dashboard','AuthController:dashboardGET')->setName('auth.dashboard');
         $app->post('/logout','AuthController:logout')->setName('auth.logout');
     })->add(new AuthMiddleware ($app->getContainer()));
+
+    $app->get('/activate','AuthController:activateAccount')->setName('auth.activate_account');
 });
 
 $app->group('/tasks',function ($app) {

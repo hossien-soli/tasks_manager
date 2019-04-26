@@ -31,4 +31,13 @@ class Gate
         $result = User::where('username',$username)->first();
         return is_null($result);
     }
+
+    public function accountIsActive ($username_or_email)
+    {
+        $user = User::where('username',$username_or_email)
+                    ->orWhere('email',$username_or_email)->first();
+        if (is_null($user))
+            return false;
+        return $user->isactive == 1;
+    }
 }
